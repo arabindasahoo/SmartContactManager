@@ -1,0 +1,133 @@
+body{
+	background: #e2e2e2; !important;
+}
+
+.bg-primary{
+	
+	background: lime; !important;
+}
+
+.banner{
+	
+	background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)), url("../img/banner.jpg");
+	background-size:cover;
+	width: 100%;
+	height: 95vh;
+	color: green;
+}
+
+.my-card{
+	padding: 20px;
+	background: white;
+}
+
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 380px;
+  border: 1px solid #9C9C9C;
+  background-color: #80ffff;
+  background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)), url("../img/banner.jpg");
+  position: fixed;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 10px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+
+.sidebar{
+
+	width: 18%;
+	background: navy;
+	height: 100%;
+	position: fixed;
+	padding-top: 20px;
+	margin-top:3px;
+	z-index: 9999999999999999999999999999999999999;
+}
+.sidebar a{
+	display: block;
+	width: 100%;
+	padding: 10px 25px;
+	text-decoration: none;
+	color: white;
+	margin-top: 10px;
+}
+
+.sidebar a:hover{
+	background: teal;
+}
+
+.sidebar .divider{
+	
+	height: .5px;
+	width: 100%;
+	background: #e2e2e2;
+	margin-top: 10px;
+	}
+
+/*Style for Sidebar  */
+@media only screen and (max-width :600px){
+	
+	.sidebar{
+	display:none;
+	width: 80% !important;
+	background: white;
+	height: 100vh;
+	position: fixed;
+	padding-top: 20px;
+	}
+	.content{
+		margin-left: 0% !important;
+	}
+}
+
+
+
+.content{
+	margin-top:50px;
+	margin-left: 20%;
+}
+.crossBtn{
+	
+	position: absolute;
+	top: 0px;
+	right: 35px;
+	font-size: 36px;
+	cursor: pointer;
+	color: white;
+}
+
+.profile-image{
+	width: 35px;
+	height: 35px;
+	object-fit:cover;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+/* CSS code for Search for Contacts */
+
+.search-container{
+	
+	position: relative;
+}
+.search-result{
+	position: absolute;
+	width: 100%;
+	border: 1px solid grey;
+	display: none;
+	background: white;
+	padding: 10px;
+}
+
+/* Code for Showing Active Side Bar link when clicked */
+
+.active{
+	color: white;
+	background: lime;!important;
+}
+
+
