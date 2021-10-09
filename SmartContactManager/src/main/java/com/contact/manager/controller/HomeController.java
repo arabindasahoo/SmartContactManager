@@ -1,9 +1,17 @@
 package com.contact.manager.controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.contact.manager.entity.User;
 import com.contact.manager.helper.Message;
@@ -27,10 +36,21 @@ public class HomeController {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/")
-	public String getHome(Model model)
+	public String getHome(Model model,Principal principal)
 	{
-		model.addAttribute("title", "Home - Contact manager");
-		return "home";
+		
+		if(principal == null)
+		{
+			model.addAttribute("title", "Home - Contact manager");
+			return "home";
+		}
+		else {
+			User user = userRepository.findByUserName(principal.getName());
+			model.addAttribute("title", "User Dashboard - Contact manager");
+			model.addAttribute("user", user);
+			return "/normal/user-dashboard";
+		}
+		
 	}
 	
 
@@ -70,7 +90,7 @@ public class HomeController {
 	@PostMapping("/doRegister")
 	public String register(@Valid@ModelAttribute("user")User user,BindingResult result,
 				@RequestParam(value = "agreement",defaultValue = "false")boolean agreement,
-				Model model,HttpSession session)
+				Model model,HttpSession session,@RequestParam("profileImage")MultipartFile multipartFile)
 	{
 		
 		try {
@@ -88,10 +108,17 @@ public class HomeController {
 				model.addAttribute("title", "Register - Contact manager");
 				return "signup";
 			}
+			if(!multipartFile.isEmpty())
+			{
+				user.setImageUrl(multipartFile.getOriginalFilename());
+				File file = new ClassPathResource("/static/img/").getFile();
+				Path path = Paths.get(file.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
+				Files.copy(multipartFile.getInputStream(), path,StandardCopyOption.REPLACE_EXISTING);
+			}
+			
 			
 			user.setRole("ROLE_USER");
 			user.setEnable(true);
-			user.setImageUrl("default.png");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			
 			User savedUser = userRepository.save(user);

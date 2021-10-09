@@ -26,8 +26,8 @@
 
 						<h3 class="text-center">Register Here!!</h3>
 
-						<form novalidate th:action="@{/doRegister}" method="post"
-							th:object="${user}">
+						<form th:action="@{/doRegister}" method="post" enctype="multiPart/form-data"
+							th:object="${user}" >
 
 							<div class="form-group">
 								<label for="name_field">Your Name:</label> <input type="text"
@@ -78,6 +78,13 @@
 								th:each="e : ${#fields.errors('about')}" th:text="${e}">
 								</div>	
 							</div>
+							
+							<div class="custom-file my-2">
+							<label for="password_field">Profile Image:</label>
+								<input required="required" type="file" name="profileImage" />
+							
+							</div>
+							
 
 							<div class="form-group form-check">
 								<input type="checkbox" name="agreement" class="form-check-input"

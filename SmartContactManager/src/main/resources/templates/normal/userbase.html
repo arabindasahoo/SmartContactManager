@@ -22,26 +22,39 @@
     <!-- Starting of Navbar -->
     
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Smart Contact Manager</a>
+  <a class="navbar-brand font-weight-bold font-italic" href="#">Smart Contact Manager</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto text-uppercase">
+    <ul class="navbar-nav ml-auto text-uppercase font-weight-bold">
     
-    
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/user/index}">Home <span class="sr-only">(current)</span></a>
-      </li>
+    	
+    	 <li class="nav-item mr-2">
+   			 <a class="nav-link" tabindex="-1" aria-disabled="true">
+        	<span>
+        	<img style="width: 35px;height: 35px;border-radius: 50%;" th:src="@{'/img/'+${user.imageUrl}}" alt="ProfileImage" />
+        	</span>
+       		 </a>
+      	</li>
       
-        <li class="nav-item">
-        <a class="nav-link" tabindex="-1" aria-disabled="true">
-        <span th:text="${user.name}"></span>
-        </a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" th:href="@{/logout}" tabindex="-1" aria-disabled="true">logout</a>
+      <li class="nav-item">
+      	<div class="btn-group">
+			  <button type="button" class="btn btn-primary btn-lg dropdown-toggle"
+			  						 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span class="text-uppercase" th:text="${user.name}"></span>
+			  </button>
+			  <div class="dropdown-menu">
+			    <a class="dropdown-item" href="#" th:href="@{'/user/profile/'+${user.id}}">Your Profile</a>
+			    <a class="dropdown-item" href="#" th:href="@{/user/addContact}">Add Contact</a>
+			    <a class="dropdown-item" href="#" th:href="@{/user/viewContacts/0}">Contact List</a>
+			    <a class="dropdown-item" href="#" th:href="@{/user/settings}" >Change Password</a>
+			    <div class="dropdown-divider"></div>
+			    <a class="dropdown-item" href="#" th:href="@{/logout}">Logout</a>
+			  </div>
+			</div>
+      
       </li>
       
     </ul>
@@ -53,7 +66,7 @@
 
 <!--Start of side bar  -->
 
-	<div class="sidebar">
+	<div class="sidebar mt-3">
 	<span class="crossBtn" onclick="toggleSidebar()">&times;</span>
 	<br><br>
 	
@@ -63,7 +76,7 @@
 	
 	<a id="addlink" th:href="@{/user/addContact}" class="item"><i class="fas fa-address-card"></i> Add Contact</a>
 	
-	<a id="profilelink" th:href="@{'/user/profile/'+${user.id}}"class="item"><i class="fas fa-users"></i> Your Profile</a>
+	<a id="profilelink" th:href="@{'/user/profile/'+${user.id}}" class="item"><i class="fas fa-users"></i> Your Profile</a>
 	
 	<a id="settinglink" href="#" th:href="@{/user/settings}" class="item"><i class="fas fa-cogs"></i> Settings</a>
 	
@@ -83,7 +96,7 @@
 
 	<div class="content">
 	
-	<i style="color: black;margin-top: 20px;" class="fas fa-bars" onclick="toggleSidebar()"></i>
+	<i style="color: black;margin-top: 38px;" class="fas fa-bars" onclick="toggleSidebar()"></i>
 	
 	<!--THIS IS TO SHOW MESSAGE AFTER SUCCESS OR FAILURE OF SAVE  -->
 	
