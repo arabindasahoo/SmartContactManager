@@ -1,3 +1,6 @@
+
+//Function for Sidebar toggle
+
 const toggleSidebar = () => {
 
 if($('.sidebar').is(":visible")){
@@ -17,6 +20,7 @@ else
 }    
 }
 
+//Swal alert Function for delete button 
 
 function deleteContact(cid)
 {

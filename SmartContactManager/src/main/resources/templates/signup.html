@@ -3,14 +3,14 @@
 	th:replace="base::layout(~{::section})">
 <head>
 <meta charset="ISO-8859-1">
-<title th:text="${title}"></title>
+<title></title>
 </head>
 <body>
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
-					<div class="my-card mt-2">
+					<div class="my-card ">
 
 						<div th:if="${session.message}"
 							th:classappend="${session.message.type}"

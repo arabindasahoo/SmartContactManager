@@ -2,6 +2,10 @@ body{
 	background: #e2e2e2; !important;
 }
 
+div{
+	padding-top: 5px;
+}
+
 .bg-primary{
 	
 	background: lime; !important;
@@ -19,6 +23,8 @@ body{
 .my-card{
 	padding: 20px;
 	background: white;
+	margin-top: 60px;
+	margin-bottom: 30px;
 }
 
 
